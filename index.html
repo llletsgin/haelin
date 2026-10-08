@@ -22,20 +22,21 @@ body {
 }
 
 .phone {
-    width: 100%;
-    max-width: 430px;
-    height: 100vh;
-    max-height: 932px;
+    width: min(96vw, 960px);
+    aspect-ratio: 16 / 9;
+    height: auto;
     background: #dff7c8;
     position: relative;
     overflow: hidden;
+    border-radius: 18px;
+    box-shadow: 0 14px 40px rgba(0,0,0,.28);
 }
 
 /* 시작 화면 */
 
 #startScreen {
     height: 100%;
-    padding: 40px 24px;
+    padding: 32px 24px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -44,27 +45,29 @@ body {
 }
 
 .start-title {
-    font-size: 36px;
+    font-size: 42px;
     font-weight: 900;
-    line-height: 1.35;
+    line-height: 1.25;
     margin-bottom: 18px;
 }
 
 .start-monster {
-    width: 145px;
-    height: 145px;
+    width: 135px;
+    height: 135px;
     object-fit: cover;
-    margin: 0 auto 26px;
+    margin: 0 auto 20px;
     display: block;
     border-radius: 24px;
+    border: 4px solid #222;
     box-shadow: 0 8px 0 rgba(0,0,0,.18);
 }
 
 .start-text {
     font-size: 18px;
-    line-height: 1.7;
-    margin-bottom: 28px;
+    line-height: 1.6;
+    margin-bottom: 24px;
     color: #444;
+    font-weight: 800;
 }
 
 .main-button {
@@ -74,9 +77,11 @@ body {
     color: white;
     font-size: 21px;
     font-weight: 900;
-    padding: 17px 20px;
+    padding: 15px 22px;
     cursor: pointer;
     box-shadow: 0 5px 0 #1f6f30;
+    width: 240px;
+    margin: 0 auto;
 }
 
 .main-button:active {
@@ -97,49 +102,35 @@ body {
 .map {
     position: absolute;
     inset: 0;
-    background-image: url("map.png?v=daily1");
+    background-image: url("map.png?v=havana1");
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
 }
 
+/* 안내문 */
+
 .top-ui {
     position: absolute;
-    top: 12px;
-    left: 12px;
-    right: 12px;
+    top: 14px;
+    left: 14px;
+    right: 14px;
     z-index: 8;
     background: rgba(255,255,255,.92);
     border: 3px solid #333;
     border-radius: 14px;
-    padding: 10px 12px;
-    font-size: 14px;
+    padding: 10px 14px;
+    font-size: 15px;
     font-weight: 900;
     line-height: 1.45;
-}
-
-/* 이동 가능 구역 표시 */
-
-.move-zone {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 50%;
-    height: 100%;
-    border-left: 3px dashed rgba(255,255,255,.7);
-    background: rgba(255,255,255,.06);
-    z-index: 1;
-    pointer-events: none;
 }
 
 /* 맵 위 해짱 */
 
 .player {
     position: absolute;
-    width: 52px;
-    height: 52px;
-    left: 310px;
-    top: 700px;
+    width: 54px;
+    height: 54px;
     z-index: 7;
     transition: left .18s linear, top .18s linear;
 }
@@ -170,12 +161,12 @@ body {
 
 .controls {
     position: absolute;
-    bottom: 24px;
+    bottom: 18px;
     left: 18px;
     z-index: 9;
     display: grid;
-    grid-template-columns: 56px 56px 56px;
-    grid-template-rows: 56px 56px 56px;
+    grid-template-columns: 52px 52px 52px;
+    grid-template-rows: 52px 52px 52px;
     gap: 6px;
 }
 
@@ -183,7 +174,7 @@ body {
     border: 3px solid #333;
     background: rgba(255,255,255,.92);
     border-radius: 14px;
-    font-size: 24px;
+    font-size: 23px;
     font-weight: 900;
     cursor: pointer;
 }
@@ -214,9 +205,9 @@ body {
 .hint {
     position: absolute;
     right: 18px;
-    bottom: 42px;
+    bottom: 22px;
     z-index: 9;
-    width: 155px;
+    width: 170px;
     background: rgba(255,255,255,.92);
     border: 3px solid #333;
     border-radius: 16px;
@@ -240,8 +231,7 @@ body {
 .battle-stage {
     position: relative;
     width: 100%;
-    height: calc(100% - 210px);
-    min-height: 520px;
+    height: calc(100% - 170px);
     background:
         linear-gradient(
             to bottom,
@@ -269,13 +259,13 @@ body {
     opacity: .25;
 }
 
-/* 상대 상태창 */
+/* 상태창 */
 
 .enemy-status {
     position: absolute;
-    left: 12px;
-    top: 28px;
-    width: 190px;
+    left: 18px;
+    top: 24px;
+    width: 210px;
     background: #f8f8f8;
     border: 4px solid #222;
     border-radius: 8px 8px 8px 2px;
@@ -310,10 +300,10 @@ body {
 
 .enemy-platform {
     position: absolute;
-    right: 24px;
-    top: 170px;
-    width: 170px;
-    height: 58px;
+    right: 105px;
+    top: 210px;
+    width: 210px;
+    height: 62px;
     background: #d8b07b;
     border-radius: 50%;
     border: 4px solid #8f6a45;
@@ -322,10 +312,10 @@ body {
 
 .enemy-monster {
     position: absolute;
-    right: 40px;
-    top: 58px;
-    width: 150px;
-    height: 165px;
+    right: 130px;
+    top: 70px;
+    width: 160px;
+    height: 190px;
     object-fit: cover;
     border-radius: 20px;
     border: 3px solid #222;
@@ -337,10 +327,10 @@ body {
 
 .player-platform {
     position: absolute;
-    left: 24px;
-    bottom: 105px;
-    width: 190px;
-    height: 62px;
+    left: 100px;
+    bottom: 38px;
+    width: 220px;
+    height: 66px;
     background: #d8b07b;
     border-radius: 50%;
     border: 4px solid #8f6a45;
@@ -349,10 +339,10 @@ body {
 
 .player-monster-wrap {
     position: absolute;
-    left: 30px;
-    bottom: 130px;
-    width: 125px;
-    height: 125px;
+    left: 132px;
+    bottom: 72px;
+    width: 135px;
+    height: 135px;
     z-index: 3;
 }
 
@@ -367,9 +357,9 @@ body {
 
 .player-status {
     position: absolute;
-    right: 12px;
-    bottom: 118px;
-    width: 190px;
+    right: 20px;
+    bottom: 42px;
+    width: 210px;
     background: #f8f8f8;
     border: 4px solid #222;
     border-radius: 8px 8px 2px 8px;
@@ -390,8 +380,8 @@ body {
     position: absolute;
     width: 48px;
     height: 48px;
-    left: 112px;
-    bottom: 166px;
+    left: 220px;
+    bottom: 135px;
     z-index: 20;
     opacity: 0;
     pointer-events: none;
@@ -409,19 +399,19 @@ body {
     }
 
     20% {
-        transform: translate(40px, -45px) scale(0.82) rotate(120deg);
+        transform: translate(90px, -50px) scale(0.82) rotate(120deg);
     }
 
     45% {
-        transform: translate(105px, -120px) scale(0.78) rotate(260deg);
+        transform: translate(210px, -125px) scale(0.78) rotate(260deg);
     }
 
     70% {
-        transform: translate(165px, -175px) scale(0.72) rotate(420deg);
+        transform: translate(340px, -160px) scale(0.72) rotate(420deg);
     }
 
     100% {
-        transform: translate(220px, -205px) scale(0.62) rotate(720deg);
+        transform: translate(455px, -145px) scale(0.62) rotate(720deg);
     }
 }
 
@@ -458,7 +448,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    height: 210px;
+    height: 170px;
     background: #f1f1f1;
     border-top: 5px solid #222;
     display: flex;
@@ -466,15 +456,15 @@ body {
 }
 
 .battle-message {
-    margin: 12px;
-    padding: 16px;
-    min-height: 92px;
+    margin: 10px 12px;
+    padding: 13px 16px;
+    min-height: 76px;
     background: white;
     border: 4px solid #222;
     border-radius: 8px;
-    font-size: 19px;
+    font-size: 18px;
     font-weight: 900;
-    line-height: 1.6;
+    line-height: 1.45;
 }
 
 .command-area {
@@ -486,7 +476,7 @@ body {
 
 .catch-button {
     width: 100%;
-    height: 58px;
+    height: 54px;
     border: 4px solid #222;
     border-radius: 8px;
     background: #fff;
@@ -507,7 +497,7 @@ body {
 #endingScreen {
     display: none;
     height: 100%;
-    padding: 38px 24px;
+    padding: 34px 24px;
     text-align: center;
     background:
         radial-gradient(circle at top, #fff1a8, #ffc9de 45%, #bde0fe);
@@ -517,34 +507,35 @@ body {
     background: rgba(255,255,255,.92);
     border: 4px solid #333;
     border-radius: 28px;
-    padding: 28px 18px;
-    margin-top: 30px;
+    padding: 22px 18px;
+    margin: 0 auto;
+    max-width: 560px;
 }
 
 .ending-title {
-    font-size: 36px;
+    font-size: 38px;
     font-weight: 900;
-    line-height: 1.35;
-    margin: 16px 0;
+    line-height: 1.25;
+    margin: 12px 0;
 }
 
 .ending-sub {
     font-size: 18px;
     font-weight: 800;
-    line-height: 1.6;
+    line-height: 1.5;
 }
 
 .ending-imgs {
     display: flex;
     justify-content: center;
-    gap: 14px;
+    gap: 16px;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 18px;
 }
 
 .ending-imgs img {
-    width: 120px;
-    height: 120px;
+    width: 112px;
+    height: 112px;
     object-fit: cover;
     border-radius: 20px;
     border: 3px solid #222;
@@ -564,14 +555,14 @@ body {
         </div>
 
         <img
-            src="haejjang.png?v=daily1"
+            src="haejjang.png?v=havana1"
             class="start-monster"
             alt="해짱"
         >
 
         <div class="start-text">
-            해짱과 함께 길을 따라가면<br>
-            특별한 야생 인간을 만날 수 있다.
+            지루한 해짱과 함께 도로를 걸어가면<br>
+            특별한 야생 인간을 만날 수 있을지도..
         </div>
 
         <button class="main-button" id="startButton">
@@ -585,15 +576,13 @@ body {
 
         <div class="map" id="map">
 
-            <div class="move-zone"></div>
-
             <div class="top-ui">
-                오른쪽 구역 안에서 이동하세요.<br>
-                오른쪽 끝으로 가면 야생 인간이 나타납니다.
+                하바나 도로를 따라서 걸어가세요.<br>
+                길 끝에 가면 야생 인간이 나타납니다.
             </div>
 
             <div class="player" id="player">
-                <img src="haejjang.png?v=daily1" alt="해짱">
+                <img src="haejjang.png?v=havana1" alt="해짱">
             </div>
 
         </div>
@@ -606,8 +595,8 @@ body {
         </div>
 
         <div class="hint">
-            이동 가능 구역은<br>
-            화면 오른쪽 절반
+            방향키 또는 화살표 키로<br>
+            하바나 도로를 따라 이동해보시긔
         </div>
 
     </section>
@@ -632,7 +621,7 @@ body {
             <div class="enemy-platform"></div>
 
             <img
-                src="yunteoni.png?v=daily1"
+                src="yunteoni.png?v=havana1"
                 class="enemy-monster"
                 alt="야생 인간 윤터니"
             >
@@ -641,7 +630,7 @@ body {
 
             <div class="player-monster-wrap">
                 <img
-                    src="haejjang.png?v=daily1"
+                    src="haejjang.png?v=havana1"
                     class="player-monster"
                     alt="해짱"
                 >
@@ -663,7 +652,7 @@ body {
             </div>
 
             <img
-                src="ball.png?v=daily1"
+                src="ball.png?v=havana1"
                 id="pokeball"
                 class="pokeball"
                 alt="몬스터볼"
@@ -694,7 +683,7 @@ body {
 
         <div class="ending-card">
 
-            <div style="font-size:64px;">
+            <div style="font-size:56px;">
                 🌈
             </div>
 
@@ -704,13 +693,13 @@ body {
             </div>
 
             <div class="ending-sub">
-                야생 인간 윤터니를 잡았다!<br>
-                해짱과 함께 오늘도 평화로운 하루.
+                해린(은/는) 야생 인간 윤터니를 잡았다!<br>
+                야생윤터니와 함께 오늘도 즐겁띠띠한 하루.
             </div>
 
             <div class="ending-imgs">
-                <img src="yunteoni.png?v=daily1" alt="윤터니">
-                <img src="haejjang.png?v=daily1" alt="해짱">
+                <img src="yunteoni.png?v=havana1" alt="윤터니">
+                <img src="haejjang.png?v=havana1" alt="해짱">
             </div>
 
         </div>
@@ -728,11 +717,12 @@ const endingScreen = document.getElementById("endingScreen");
 const startButton = document.getElementById("startButton");
 const catchButton = document.getElementById("catchButton");
 const player = document.getElementById("player");
+const map = document.getElementById("map");
 const pokeball = document.getElementById("pokeball");
 const enemyMonster = document.querySelector(".enemy-monster");
 
-let x = 310;
-let y = 700;
+let x = 0;
+let y = 0;
 let encountered = false;
 
 function showScreen(screen) {
@@ -742,6 +732,16 @@ function showScreen(screen) {
     endingScreen.style.display = "none";
 
     screen.style.display = "block";
+}
+
+function setInitialPlayerPosition() {
+    const mapWidth = map.clientWidth;
+    const mapHeight = map.clientHeight;
+
+    x = mapWidth * 0.58;
+    y = mapHeight * 0.68;
+
+    updatePlayer();
 }
 
 function updatePlayer() {
@@ -758,7 +758,12 @@ function updatePlayer() {
 }
 
 function movePlayer(dir) {
-    const step = 28;
+    const mapWidth = map.clientWidth;
+    const mapHeight = map.clientHeight;
+    const playerWidth = player.offsetWidth;
+    const playerHeight = player.offsetHeight;
+
+    const step = Math.max(18, mapWidth * 0.035);
 
     if (dir === "up") {
         y -= step;
@@ -777,16 +782,20 @@ function movePlayer(dir) {
     }
 
     /*
-        이동 제한:
-        화면 전체 폭을 430px 기준으로 잡고,
-        오른쪽 절반만 이동 가능하게 제한.
-        즉 x는 215px보다 왼쪽으로 갈 수 없음.
+        실제 이동은 화면 오른쪽 절반에서만 가능.
+        단, 반 나누는 선은 화면에 보이지 않게 처리함.
     */
 
-    if (x < 215) x = 215;
-    if (x > 372) x = 372;
-    if (y < 80) y = 80;
-    if (y > 735) y = 735;
+    const minX = mapWidth * 0.5;
+    const maxX = mapWidth - playerWidth - 22;
+
+    const minY = mapHeight * 0.18;
+    const maxY = mapHeight - playerHeight - 26;
+
+    if (x < minX) x = minX;
+    if (x > maxX) x = maxX;
+    if (y < minY) y = minY;
+    if (y > maxY) y = maxY;
 
     updatePlayer();
 }
@@ -794,11 +803,9 @@ function movePlayer(dir) {
 function checkEncounter() {
     if (encountered) return;
 
-    /*
-        오른쪽 끝 구역에 도착하면 배틀 시작
-    */
+    const mapWidth = map.clientWidth;
 
-    if (x >= 350) {
+    if (x >= mapWidth * 0.84) {
         encountered = true;
 
         setTimeout(function() {
@@ -809,7 +816,7 @@ function checkEncounter() {
 
 startButton.addEventListener("click", function() {
     showScreen(mapScreen);
-    updatePlayer();
+    setInitialPlayerPosition();
 });
 
 document.querySelectorAll(".ctrl").forEach(function(button) {
@@ -834,6 +841,23 @@ document.addEventListener("keydown", function(e) {
     if (e.key === "ArrowDown") movePlayer("down");
     if (e.key === "ArrowLeft") movePlayer("left");
     if (e.key === "ArrowRight") movePlayer("right");
+});
+
+window.addEventListener("resize", function() {
+    if (mapScreen.style.display !== "block") return;
+
+    const mapWidth = map.clientWidth;
+    const mapHeight = map.clientHeight;
+    const playerWidth = player.offsetWidth;
+    const playerHeight = player.offsetHeight;
+
+    if (x < mapWidth * 0.5) x = mapWidth * 0.5;
+    if (x > mapWidth - playerWidth - 22) x = mapWidth - playerWidth - 22;
+    if (y < mapHeight * 0.18) y = mapHeight * 0.18;
+    if (y > mapHeight - playerHeight - 26) y = mapHeight - playerHeight - 26;
+
+    player.style.left = x + "px";
+    player.style.top = y + "px";
 });
 
 catchButton.addEventListener("click", function() {
